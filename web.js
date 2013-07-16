@@ -2,8 +2,8 @@ var express = require('express');
 var app = express.createServer(express.logger());
 
 //Get site contents
-var buf = fs.readFileSync('index.html');
-var content = buf.toString("utf8",0,buf.length);
+var tmp = fs.readFileSync('index.html');
+var content = tmp.toString("utf8");
 
 //Output to server
 app.get('/', function(request, response) {
