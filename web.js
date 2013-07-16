@@ -1,21 +1,11 @@
-var fs = require('fs');
 var express = require('express');
-
-//Get site contents
-
-var page = 'index.html';
-
-var content = function(page) { 
-	return fs.readFile(page, function (err, data) {
-		if (err) throw err;
-		var buf = new Buffer(data)
-		buf.toString("utf8",0,buf.length);
-	});
-};
-
-//Output to server
 var app = express.createServer(express.logger());
 
+//Get site contents
+var buf = fs.readFileSync('index.html');
+var content = buf.toString("utf8",0,buf.length);
+
+//Output to server
 app.get('/', function(request, response) {
   response.send(content);
 });
